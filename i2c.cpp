@@ -82,15 +82,6 @@ uint16_t i2cread(uint8_t device, uint8_t address) {
   return data;
 }
 
-int i2cwritestr(char *str) {
-  int n = 0;
-  while (str[n] != '\0') {
-    while ((UCSR0A & (1 << UDRE0)) == 0) {}
-    UDR0 = str[n];
-    n++;
-  }
-}
-
 void i2cstop() {
 
   TWCR = (1 << TWINT) | (1 << TWSTO) | (1 << TWEN);                      // Sending stop conditon
