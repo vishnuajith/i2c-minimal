@@ -11,9 +11,9 @@
 #######################################
 
 init	KEYWORD2
-read	KEYWORD2
+readack	KEYWORD2
+readnck	KEYWORD2
 write	KEYWORD2
-writestr	KEYWORD2
 stop	KEYWORD2
 
 
