@@ -14,9 +14,11 @@
 #define twbr ((CPU / I2CFREQ) - 16) / 2
 
 void i2cinit(void);
-uint16_t i2cread(uint8_t, uint8_t);
-void i2cwrite(uint8_t, uint8_t, uint8_t);
-void i2cstop(void);
+void i2cstart(uint8_t);
+void i2cwrite(uint8_t);
+uint8_t i2creadack();
+uint8_t i2creadnck() ;
+void i2cstop();
 
 
 #endif

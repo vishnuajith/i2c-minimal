@@ -24,70 +24,38 @@ void i2cinit() {
   TWCR = (1 << TWEN);                                                    // Set Two Wire Enable (not necessary)
 
 }
-void i2cwrite(uint8_t device, uint8_t address, uint8_t data) {
-
+void i2cstart(uint8_t device){
   TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWSTA);                      //Send start command
   while (!(TWCR & (1 << TWINT)));
-
   TWDR = device;                                                         //Send device id
   TWCR = (1 << TWINT) | (1 << TWEN);
   while (!(TWCR & (1 << TWINT)));
+}
 
-  TWDR = address;                                                        //Send address
-  TWCR = (1 << TWINT) | (1 << TWEN);
-  while (!(TWCR & (1 << TWINT)));
-
+void i2cwrite(uint8_t data) {
   TWDR = data;                                                           //Send data
   TWCR = (1 << TWINT) | (1 << TWEN);
   while (!(TWCR & (1 << TWINT)));
-
-  TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWSTO);                      //Send stop command
-  while ((TWCR & (1 << TWINT)));      
-
 }
-
-uint16_t i2cread(uint8_t device, uint8_t address) {
-  
-  uint16_t data;
-
-  TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWSTA);                      //Send start command
-  while (!(TWCR & (1 << TWINT)));
-
-  TWDR = device & 0xFE;                                                  //Send device id
-  TWCR = (1 << TWINT) | (1 << TWEN);
-  while (!(TWCR & (1 << TWINT)));
-
-  TWDR = address;                                                        //Send address
-  TWCR = (1 << TWINT) | (1 << TWEN);
-  while (!(TWCR & (1 << TWINT)));
-
-  TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWSTA);                      //Send start command
-  while (!(TWCR & (1 << TWINT)));
-
-  TWDR = device;                                                         //Send device id
-  TWCR = (1 << TWINT) | (1 << TWEN);
-  while (!(TWCR & (1 << TWINT)));
-
+uint8_t i2creadack() {
+  uint8_t data;
   TWCR = (1 << TWINT) | (1 << TWEA) | (1 << TWEN);                       //readack
   while (!(TWCR & (1 << TWINT)));
-  data = TWDR << 8;
-
-  TWCR = (1 << TWINT) | (1 << TWEN);                                     //readNck
-  while (!(TWCR & (1 << TWINT)));
-  data |= TWDR;
-
-  TWCR = (1 << TWINT) | (1 << TWSTO) | (1 << TWEN);                      // Sending stop conditon
-  while ((TWCR & (1 << TWINT)));
-
+  data = TWDR;
   return data;
 }
-
-void i2cstop() {
-
-  TWCR = (1 << TWINT) | (1 << TWSTO) | (1 << TWEN);                      // Sending stop conditon
-  while ((TWCR & (1 << TWINT)));
-
+uint8_t i2creadnck() {
+  uint8_t data;
+  TWCR = (1 << TWINT) | (1 << TWEN);                                     //readNck
+  while (!(TWCR & (1 << TWINT)));
+  data = TWDR;
+  return data;
 }
+void i2cstop(){  
+  TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWSTO);                      //Send stop command
+  while ((TWCR & (1 << TWINT)));      
+}
+
 
 
 
