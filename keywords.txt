@@ -10,17 +10,17 @@
 # Methods and Functions (KEYWORD2)
 #######################################
 
-init	KEYWORD2
-readack	KEYWORD2
-readnck	KEYWORD2
-write	KEYWORD2
-stop	KEYWORD2
+i2cinit	KEYWORD2
+i2creadack	KEYWORD2
+i2creadnck	KEYWORD2
+i2cwrite	KEYWORD2
+i2cstop	KEYWORD2
 
 
 #######################################
 # Instances (KEYWORD2)
 #######################################
-i2c KEYWORD2
+
 #######################################
 # Constants (LITERAL1)
 #######################################
