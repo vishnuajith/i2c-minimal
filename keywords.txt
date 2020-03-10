@@ -11,6 +11,7 @@
 #######################################
 
 i2cinit	KEYWORD2
+i2cstart KEYWORD2
 i2creadack	KEYWORD2
 i2creadnck	KEYWORD2
 i2cwrite	KEYWORD2
