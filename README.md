@@ -4,6 +4,7 @@ i2c library for Arduino
 usage:
 
   for init: i2cinit()
+  
   for start: i2cstart(address)
   
   for reading:
