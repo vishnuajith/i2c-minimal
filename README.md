@@ -4,6 +4,7 @@ i2c library for Arduino
 This is first edition of library .As now i2c frequency is default set at 400kHz.
 
 Usage:
+
     For Begining I2C Communication use i2c.init();
 
 
