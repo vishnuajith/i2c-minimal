@@ -13,13 +13,23 @@
 #define BAUD 9600
 #define twbr ((CPU / I2CFREQ) - 16) / 2
 
-void i2cinit(void);
-void i2cstart(uint8_t);
-void i2cwrite(uint8_t);
-uint8_t i2creadack();
-uint8_t i2creadnck() ;
-void i2cstop();
 
+
+class iic
+{
+	public:
+		iic();
+		void init(void);
+		void start(uint8_t);
+		void write(uint8_t);
+		uint8_t readack();
+		uint8_t readnck();
+		void stop();
+	
+};
+
+
+extern iic i2c;
 
 #endif
 

@@ -1,17 +1,24 @@
 # i2c
 i2c library for Arduino
 
-usage:
+This is first edition of library .As now i2c frequency is default set at 400kHz.
 
-  for init: i2cinit()
-  for start: i2cstart(address)
-  
-  for reading:
-  
-	with acknowledge i2creadack()
-	
-	without acknowledge i2creadnck()
-  
-  for writing: i2cwrite(data)
-  
-  for stoping: i2cstop()
+Usage:
+For Begining I2C Communication use i2c.init();
+
+
+To Start Communication to a device use i2c.start(<device_address>);
+
+
+Write to I2C device using i2c.write(<data>);
+
+
+Read with Acknowledge using i2c.readack();
+
+
+Read without Acknowledge using i2c.readnck();
+
+
+Stop I2C Communication use i2c.stop();
+
+

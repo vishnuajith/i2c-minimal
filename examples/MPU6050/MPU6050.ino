@@ -15,26 +15,26 @@ int16_t Tem = 0;
 
 void setup() {
     Serial.begin(9600);
-    i2cinit();
+    i2c.init();
 }
 
 void loop() {
-    i2cstart(0x68 << 1 | 0);
-    i2cwrite(0x6B);                                                         //Power Management     
-    i2cwrite(0x00);
-    i2cstop();
+    i2c.start(0x68 << 1 | 0);
+    i2c.write(0x6B);                                                         //Power Management     
+    i2c.write(0x00);
+    i2c.stop();
     
-    i2cstart(0x68 << 1 | 0);
-    i2cwrite(0x3B);                                                         //Writing address of the register to start reading
-    i2cstart(0x68 << 1 | 1);                                                //Starting i2c communication and reading all registers
-    AcX = i2creadack()<<8 | i2creadack();                                   //X Axis Accelerometer 
-    AcY = i2creadack()<<8 | i2creadack();                                   //Y Axis Accelerometer 
-    AcZ = i2creadack()<<8 | i2creadack();                                   //Z Axis Accelerometer 
-    Tem = (i2creadack()<<8 | i2creadack()) / 340 + 36.53;                   //Temperature          
-    GyX = i2creadack()<<8 | i2creadack();                                   //X Axis Gyroscope     
-    GyY = i2creadack()<<8 | i2creadack();                                   //Y Axis Gyroscope     
-    GyZ = i2creadack()<<8 | i2creadnck();                                   //Z Axis Gyroscope    
-    i2cstop();                                                              //Ending i2c communications
+    i2c.start(0x68 << 1 | 0);
+    i2c.write(0x3B);                                                         //Writing address of the register to start reading
+    i2c.start(0x68 << 1 | 1);                                                //Starting i2c communication and reading all registers
+    AcX = i2c.readack()<<8 | i2c.readack();                                   //X Axis Accelerometer 
+    AcY = i2c.readack()<<8 | i2c.readack();                                   //Y Axis Accelerometer 
+    AcZ = i2c.readack()<<8 | i2c.readack();                                   //Z Axis Accelerometer 
+    Tem = (i2c.readack()<<8 | i2c.readack()) / 340 + 36.53;                   //Temperature          
+    GyX = i2c.readack()<<8 | i2c.readack();                                   //X Axis Gyroscope     
+    GyY = i2c.readack()<<8 | i2c.readack();                                   //Y Axis Gyroscope     
+    GyZ = i2c.readack()<<8 | i2c.readnck();                                   //Z Axis Gyroscope    
+    i2c.stop();                                                              //Ending i2c communications
 
 
 

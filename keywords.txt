@@ -1,5 +1,5 @@
 #######################################
-# Syntax Coloring Map For Test
+# Syntax Coloring Map For i2c Library
 #######################################
 
 #######################################
@@ -10,18 +10,18 @@
 # Methods and Functions (KEYWORD2)
 #######################################
 
-i2cinit	KEYWORD2
-i2cstart KEYWORD2
-i2creadack	KEYWORD2
-i2creadnck	KEYWORD2
-i2cwrite	KEYWORD2
-i2cstop	KEYWORD2
+init	KEYWORD2
+start	KEYWORD2
+write	KEYWORD2
+readack	KEYWORD2
+readnck	KEYWORD2
+stop	KEYWORD2
 
 
 #######################################
 # Instances (KEYWORD2)
 #######################################
-
+i2c KEYWORD2
 #######################################
 # Constants (LITERAL1)
 #######################################
